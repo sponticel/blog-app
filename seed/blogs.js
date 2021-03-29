@@ -1,5 +1,5 @@
 const db = require('../db/connection')
-const blog = require('../models/blog')
+const Blog = require('../models/blog')
 
 db.on('error', console.error.bind(console, 'MongoDB connection error:'))
 
@@ -25,7 +25,7 @@ const main = async () => {
         "author": "140"
       }
     ]
-  await blog.insertMany(blogs)
+  await Blog.insertMany(blogs)
   console.log("created blogs")
 }
 const run = async () => {
