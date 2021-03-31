@@ -1,15 +1,12 @@
 import React, { useState, useEffect } from 'react'
+import './ProductEdit.css'
 import { useParams, Redirect } from 'react-router-dom'
-
-import { getPost, updatePost } from '../../services/posts'
-
 import Layout from '../../components/shared/Layout/Layout'
+import { getProduct, updateProduct } from '../../services/products'
 
-import './PostEdit.css'
+const ProductEdit = (props) => {
 
-const PostEdit = (props) => {
-
-    const [post, setPost] = useState({
+    const [product, setProduct] = useState({
             name: '',
             description: '',
             imgURL: '',
@@ -20,18 +17,18 @@ const PostEdit = (props) => {
     let { id } = useParams()
 
     useEffect(() => {
-        const fetchPost = async () => {
-            const post = await getPost(id)
-            setPost(post)
+        const fetchProduct = async () => {
+            const product = await getProduct(id)
+            setProduct(product)
         }
-        fetchPost()
+        fetchProduct()
     }, [id])
 
 
     const handleChange = (event) => {
         const { name, value } = event.target
-        setPost({
-                ...post,
+        setProduct({
+                ...product,
                 [name]: value
         })
     }
@@ -39,24 +36,24 @@ const PostEdit = (props) => {
     const handleSubmit = async (event) => {
         event.preventDefault()
         let { id } = props.match.params
-        const updated = await updatePost(id, post)
+        const updated = await updateProduct(id, product)
         setUpdated(updated)
     }
 
     if (isUpdated) {
-        return <Redirect to={`/posts/${props.match.params.id}`} />
+        return <Redirect to={`/products/${props.match.params.id}`} />
     }
 
     return (
         <Layout user={props.user}>
-            <div className="post-edit">
+            <div className="product-edit">
                 <div className="image-container">
-                    <img className="edit-post-image" src={post.imgURL} alt={post.name} />
+                    <img className="edit-product-image" src={product.imgURL} alt={product.name} />
                     <form onSubmit={handleSubmit}>
                         <input
                             className="edit-input-image-link"
                             placeholder='Image Link'
-                            value={post.imgURL}
+                            value={product.imgURL}
                             name='imgURL'
                             required
                             onChange={handleChange}
@@ -67,7 +64,7 @@ const PostEdit = (props) => {
                     <input
                         className="input-name"
                         placeholder='Name'
-                        value={post.name}
+                        value={product.name}
                         name='name'
                         required
                         autoFocus
@@ -76,7 +73,7 @@ const PostEdit = (props) => {
                     <input
                         className="input-price"
                         placeholder='Price'
-                        value={post.price}
+                        value={product.price}
                         name='price'
                         required
                         onChange={handleChange}
@@ -86,7 +83,7 @@ const PostEdit = (props) => {
                         rows={10}
                         cols={78}
                         placeholder='Description'
-                        value={post.description}
+                        value={product.description}
                         name='description'
                         required
                         onChange={handleChange}
@@ -98,4 +95,4 @@ const PostEdit = (props) => {
     )
 }
 
-export default PostEdit
+export default ProductEdit
