@@ -1,6 +1,6 @@
 import api from './apiConfig'
 
-export const getPosts = async () => {
+export const getProducts = async () => {
   try {
       const response = await api.get('/posts')
       return response.data
@@ -9,7 +9,7 @@ export const getPosts = async () => {
   }
 }
 
-export const getPost = async id => {
+export const getProduct = async id => {
   try {
       const response = await api.get(`/posts/${id}`)
       return response.data
@@ -18,7 +18,7 @@ export const getPost = async id => {
   }
 }
 
-export const createPost = async post => {
+export const createProduct = async post => {
   try {
       const response = await api.post('/posts', post)
       return response.data
@@ -27,7 +27,7 @@ export const createPost = async post => {
   }
 }
 
-export const updatePost = async (id, post) => {
+export const updateProduct = async (id, post) => {
   try {
       const response = await api.put(`/posts/${id}`, post)
       return response.data
@@ -36,7 +36,7 @@ export const updatePost = async (id, post) => {
   }
 }
 
-export const deletePost = async id => {
+export const deleteProduct = async id => {
   try {
       const response = await api.delete(`/posts/${id}`)
       return response.data
