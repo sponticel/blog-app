@@ -2,7 +2,7 @@ import api from './apiConfig'
 
 export const getProducts = async () => {
   try {
-      const response = await api.get('/products')
+      const response = await api.get('/posts')
       return response.data
   } catch (error) {
       throw error
@@ -11,25 +11,25 @@ export const getProducts = async () => {
 
 export const getProduct = async id => {
   try {
-      const response = await api.get(`/products/${id}`)
+      const response = await api.get(`/posts/${id}`)
       return response.data
   } catch (error) {
       throw error
   }
 }
 
-export const createProduct = async product => {
+export const createProduct = async post => {
   try {
-      const response = await api.post('/products', product)
+      const response = await api.post('/posts', post)
       return response.data
   } catch (error) {
       throw error
   }
 }
 
-export const updateProduct = async (id, product) => {
+export const updateProduct = async (id, post) => {
   try {
-      const response = await api.put(`/products/${id}`, product)
+      const response = await api.put(`/posts/${id}`, post)
       return response.data
   } catch (error) {
       throw error
@@ -38,7 +38,7 @@ export const updateProduct = async (id, product) => {
 
 export const deleteProduct = async id => {
   try {
-      const response = await api.delete(`/products/${id}`)
+      const response = await api.delete(`/posts/${id}`)
       return response.data
   } catch (error) {
       throw error
