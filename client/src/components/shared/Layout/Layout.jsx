@@ -1,26 +1,16 @@
-.layout {
-  height: 100vh;
-  display: flex;
-  flex-direction: column;
-}
+import React from 'react'
+import './Layout.css'
+import Nav from '../Nav/Nav'
+import Footer from '../Footer/Footer'
 
-.layout-children {
-  flex: 2;
-  padding: 100px;
-}
+const Layout = (props) => (
+    <div className='layout'>
+        <Nav />
+        <div className="layout-children">
+            {props.children}
+        </div>
+        <Footer />
+    </div>
+)
 
-@media (max-width: 500px) {
-  .layout {
-      height: 100%;
-      display: flex;
-      flex-direction: column;
-  }
-  .layout-children {
-      width: 80vw;
-      padding: 0px;
-      margin: 0px;
-      display: flex;
-      flex-direction: column;
-      align-items: center;
-  }
-}
+export default Layout

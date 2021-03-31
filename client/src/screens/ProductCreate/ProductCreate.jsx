@@ -1,15 +1,12 @@
 import React, { useState } from 'react'
-import { Redirect } from 'react-router-dom'
-
-import { createPost } from '../../services/posts'
-
+import './ProductCreate.css'
 import Layout from '../../components/shared/Layout/Layout'
+import { Redirect } from 'react-router-dom'
+import { createProduct } from '../../services/products'
 
-import './PostCreate.css'
+const ProductCreate = (props) => {
 
-const PostCreate = (props) => {
-
-    const [post, setPost] = useState({
+    const [product, setProduct] = useState({
             name: '',
             description: '',
             imgURL: '',
@@ -20,20 +17,20 @@ const PostCreate = (props) => {
 
     const handleChange = (event) => {
         const { name, value } = event.target
-        setPost({
-                ...post,
+        setProduct({
+                ...product,
                 [name]: value
         })
     }
 
     const handleSubmit = async (event) => {
         event.preventDefault()
-        const created = await createPost(post)
+        const created = await createProduct(product)
         setCreated({ created })
     }
 
     if (isCreated) {
-        return <Redirect to={`/posts`} />
+        return <Redirect to={`/products`} />
     }
     return (
         <Layout user={props.user}>
@@ -41,7 +38,7 @@ const PostCreate = (props) => {
                 <input
                     className="input-name"
                     placeholder='Name'
-                    value={post.name}
+                    value={product.name}
                     name='name'
                     required
                     autoFocus
@@ -50,7 +47,7 @@ const PostCreate = (props) => {
                 <input
                     className="input-price"
                     placeholder='Price'
-                    value={post.price}
+                    value={product.price}
                     name='price'
                     required
                     onChange={handleChange}
@@ -59,7 +56,7 @@ const PostCreate = (props) => {
                     className="textarea-description"
                     rows={10}
                     placeholder='Description'
-                    value={post.description}
+                    value={product.description}
                     name='description'
                     required
                     onChange={handleChange}
@@ -67,7 +64,7 @@ const PostCreate = (props) => {
                 <input
                     className="input-image-link"
                     placeholder='Image Link'
-                    value={post.imgURL}
+                    value={product.imgURL}
                     name='imgURL'
                     required
                     onChange={handleChange}
@@ -78,4 +75,4 @@ const PostCreate = (props) => {
     )
 }
 
-export default PostCreate
+export default ProductCreate

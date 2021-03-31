@@ -1,3 +1,11 @@
+.products {
+    width: 90vw;
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-evenly;
+    padding: 40px;
+}
+
 .sort-container {
     display: flex;
     width: 83.5vw;
@@ -19,6 +27,10 @@ select {
 }
 
 @media (max-width: 500px) {
+    .products {
+        width: 100%;
+        justify-content: space-around;
+    }
     .sort-container {
         width: 100%;
         justify-content: center;
